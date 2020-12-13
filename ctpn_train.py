@@ -90,7 +90,6 @@ if __name__ == '__main__':
         epoch_loss_cls = 0
         epoch_loss_regr = 0
         epoch_loss = 0
-        scheduler.step(epoch)
 
         for batch_i, (imgs, clss, regrs) in enumerate(dataloader):
             imgs = imgs.to(device)
@@ -117,6 +116,8 @@ if __name__ == '__main__':
                   f'batch: loss_cls:{loss_cls.item():.4f}--loss_regr:{loss_regr.item():.4f}--loss:{loss.item():.4f}\n'
                   f'Epoch: loss_cls:{epoch_loss_cls / mmp:.4f}--loss_regr:{epoch_loss_regr / mmp:.4f}--'
                   f'loss:{epoch_loss / mmp:.4f}\n')
+
+        scheduler.step()
 
         epoch_loss_cls /= epoch_size
         epoch_loss_regr /= epoch_size
