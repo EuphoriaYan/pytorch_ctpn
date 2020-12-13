@@ -18,12 +18,12 @@ class RPN_REGR_Loss(nn.Module):
         self.device = device
 
     def forward(self, input, target):
-        '''
+        """
         smooth L1 loss
         :param input:y_preds
         :param target: y_true
         :return:
-        '''
+        """
         try:
             cls = target[0, :, 0]
             regr = target[0, :, 1:3]

@@ -6,7 +6,7 @@
 # '''
 import os
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '3'
+os.environ['CUDA_VISIBLE_DEVICES'] = '2'
 import torch
 from torch.utils.data import DataLoader
 from torch import optim

@@ -95,7 +95,7 @@ def readtxt(path):
             # l, u, r, d
             line = list(map(int, line))
             gtboxes.append(line)
-    return np.array(gtboxes)
+    return gtboxes
 
 
 class FakepagesDataset(Dataset):
@@ -121,7 +121,10 @@ class FakepagesDataset(Dataset):
         img_path = os.path.join(self.datadir, img_name)
         # print(img_path)
         txt_path = os.path.join(self.labelsdir, img_name.replace('.jpg', '.txt'))
-        gtbox = readtxt(txt_path)
+        gtboxes = readtxt(txt_path)
+        if len(gtboxes) < 2:
+            return self.__getitem__((idx + 1) % len(self))
+        gtbox = np.array(gtboxes)
         img = cv2.imread(img_path)
         h, w, c = img.shape
         # clip image
