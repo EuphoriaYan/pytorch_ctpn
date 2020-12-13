@@ -127,6 +127,9 @@ class FakepagesDataset(Dataset):
         gtbox = np.array(gtboxes)
         img = cv2.imread(img_path)
         h, w, c = img.shape
+        if w < 32:
+            img = cv2.resize(img, (h * 5, w * 5), cv2.INTER_NEAREST)
+            gtbox = gtbox * 5
         # clip image
         if np.random.randint(2) == 1:
             img = img[:, ::-1, :]
