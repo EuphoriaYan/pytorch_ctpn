@@ -4,4 +4,4 @@
 #
 # @Author: Greg Gao(laygin)
 #'''
-from .dataset import VOCDataset
+from .dataset import VOCDataset, FakepagesDataset

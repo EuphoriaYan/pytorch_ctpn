@@ -1,0 +1,6 @@
+
+# ckpt
+checkpoints/*.tar
+
+# idea
+.idea/
