@@ -64,7 +64,10 @@ if __name__ == '__main__':
         print('using pretrained weight: {}'.format(checkpoints_weight))
         cc = torch.load(checkpoints_weight, map_location=device)
         model.load_state_dict(cc['model_state_dict'])
-        resume_epoch = cc['epoch']
+        try:
+            resume_epoch = cc['epoch']
+        except KeyError:
+            resume_epoch = 0
 
     params_to_uodate = model.parameters()
     optimizer = optim.SGD(params_to_uodate, lr=lr, momentum=0.9)
