@@ -56,7 +56,7 @@ if __name__ == '__main__':
 
     # dataset = VOCDataset(args['image_dir'], args['labels_dir'])
     dataset = FakepagesDataset(args['image_dir'], args['labels_dir'])
-    dataloader = DataLoader(dataset, batch_size=16, shuffle=True, num_workers=args['num_workers'])
+    dataloader = DataLoader(dataset, batch_size=1, shuffle=True, num_workers=args['num_workers'])
     model = CTPN_Model()
     model.to(device)
 
