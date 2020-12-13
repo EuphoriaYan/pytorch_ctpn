@@ -140,7 +140,7 @@ class FakepagesDataset(Dataset):
 
         [cls, regr], _ = cal_rpn((h, w), (int(h / 16), int(w / 16)), 16, gtbox)
 
-        if max(cls) == -1:
+        if cls is None or max(cls) == -1:
             return self.__getitem__((idx + 1) % len(self))
 
         m_img = img - IMAGE_MEAN

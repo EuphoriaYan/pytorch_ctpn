@@ -184,7 +184,14 @@ def cal_rpn(imgsize, featuresize, scale, gtboxes):
     labels.fill(-1)
 
     # for each GT box corresponds to an anchor which has highest IOU
-    gt_argmax_overlaps = overlaps.argmax(axis=0)
+    try:
+        gt_argmax_overlaps = overlaps.argmax(axis=0)
+    except ValueError as e:
+        print('image_size: ', imgsize)
+        print('feature_size: ', featuresize)
+        print('scale: ', scale)
+        print('gtboxes: ', gtboxes)
+        return [None, None], None
 
     # the anchor with the highest IOU overlap with a GT box
     anchor_argmax_overlaps = overlaps.argmax(axis=1)
